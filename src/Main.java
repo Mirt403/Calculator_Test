@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Ввод выражения
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -11,17 +11,12 @@ public class Main {
         }
     }
 
-    public static String calc(String input) {
+    public static String calc(String input) throws IOException {
 
         // Разделение выражения на составляющие
         String[] parts = input.split(" ");
         if (parts.length != 3) {
-            try {
-                throw new IOException();
-            } catch (IOException e) {
-                System.out.println("Некорректный формат выражения.");
-                return "";
-            }
+            throw new IOException();
         }
 
         // Все римские числа от 0 до 100
@@ -56,22 +51,13 @@ public class Main {
         }
         else {
             // Проверка, являются ли оба числа арабскими
-            try {
-                num1 = Integer.parseInt(parts[0]);
-                num2 = Integer.parseInt(parts[2]);
-            } catch (NumberFormatException e) {
-                System.out.println("Некорректный формат выражения.");
-                return "";
-            }
+            num1 = Integer.parseInt(parts[0]);
+            num2 = Integer.parseInt(parts[2]);
+
 
             // Проверка арабских чисел на величину от 1 до 10
             if (num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10) {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("Числа меньше 1 или больше 10.");
-                    return "";
-                }
+                throw new IOException();
             }
         }
 
@@ -84,12 +70,7 @@ public class Main {
             case "/" -> result = num1 / num2;
             case "*" -> result = num1 * num2;
             default -> {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("Некорректный оператор.");
-                    return "";
-                }
+                throw new IOException();
             }
         }
 
@@ -99,12 +80,7 @@ public class Main {
                 return romanNumbers[result];
             }
             else {
-                try {
-                    throw new IOException();
-                } catch (IOException e) {
-                    System.out.println("Результат вычисления римских чисел < 0");
-                    return "";
-                }
+                throw new IOException();
             }
         }
 
