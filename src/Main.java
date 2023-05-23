@@ -61,7 +61,7 @@ public class Main {
             }
         }
 
-        int result = 0;
+        int result;
 
         // Выполнение вычислений
         switch (parts[1]) {
@@ -69,9 +69,7 @@ public class Main {
             case "-" -> result = num1 - num2;
             case "/" -> result = num1 / num2;
             case "*" -> result = num1 * num2;
-            default -> {
-                throw new IOException();
-            }
+            default -> throw new IOException();
         }
 
 
